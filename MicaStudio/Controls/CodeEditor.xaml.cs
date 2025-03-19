@@ -28,6 +28,7 @@ using Windows.Storage.Streams;
 using Windows.UI;
 using WinUIEditor;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -56,6 +57,7 @@ namespace MicaStudio.Controls
 			Stopwatch stopwatch = Stopwatch.StartNew();
 
 			ScintillaEditor.Editor.ClearAll();
+			ScintillaEditor.Editor.AnnotationClearAll();
 			using (IRandomAccessStream stream = await file.OpenReadAsync())
 			{
 				using (DataReader reader = new DataReader(stream))
@@ -67,6 +69,7 @@ namespace MicaStudio.Controls
 			}
 			ScintillaEditor.ResetLexer();
 			ScintillaEditor.ApplyDefaultsToDocument();
+			ScintillaEditor.Editor.SetFoldFlags(FoldFlag.LineAfterExpanded); // ENABLE FOLDING
 
 			stopwatch.Stop();
 			Debug.WriteLine($"Execution time: {stopwatch.ElapsedMilliseconds} ms");
@@ -121,46 +124,80 @@ namespace MicaStudio.Controls
 			Debug.WriteLine($"Execution time: {stopwatch.ElapsedMilliseconds} ms");
 		}
 
+		private int keyCount = 19;
 		private void parseTokens(ITokenizeLineResult result, string line, long linePosition, Registry registry)
 		{
 			Theme theme = registry.GetTheme();
+
 			foreach (IToken token in result.Tokens)
 			{
 				int startIndex = (token.StartIndex > line.Length) ? line.Length : token.StartIndex;
 				int endIndex = (token.EndIndex > line.Length) ? line.Length : token.EndIndex;
-				List<ThemeTrieElementRule> themeRules = theme.Match(token.Scopes);
-
-				foreach (ThemeTrieElementRule themeRule in themeRules)
+				foreach(var scope in token.Scopes)
 				{
-					// get position of current line i
-					long linePos = ScintillaEditor.Editor.PositionFromLine(linePosition);
+					List<ThemeTrieElementRule> themeRules = theme.Match(new string[] { scope });
 
-					// Register foreground colour to a scintilla style if it does not exist
-					if (!colorToScintillaStyle.ContainsKey(themeRule.foreground))
+					foreach (ThemeTrieElementRule themeRule in themeRules)
 					{
-						var color = Convert.ToInt32(theme.GetColor(themeRule.foreground).Replace("#", ""), 16);
-						int key = colorToScintillaStyle.Count + 1;
-						// IMPORTANT: Define a style with a unique KEY mapped to a colour, we will use it to highlight tokens
-						ScintillaEditor.Editor.StyleSetFore(key, color);
+						// get position of current line i
+						long linePos = ScintillaEditor.Editor.PositionFromLine(linePosition);
 
-						// add it to hashmap so we can retrieve it
-						colorToScintillaStyle[themeRule.foreground] = key;
+						// Register foreground colour to a scintilla style if it does not exist
+						if (!colorToScintillaStyle.ContainsKey(themeRule.foreground))
+						{
+							var color = Convert.ToInt32(theme.GetColor(themeRule.foreground).Replace("#", ""), 16);
+							keyCount++;
+							// IMPORTANT: Define a style with a unique KEY mapped to a colour, we will use it to highlight tokens
+							ScintillaEditor.Editor.StyleSetFore(keyCount, color);
+
+							// add it to hashmap so we can retrieve it
+							colorToScintillaStyle[themeRule.foreground] = keyCount;
+						}
+
+						// start styling from token position by using line position and index of token
+						ScintillaEditor.Editor.StartStyling(linePos + startIndex, 0);
+						// USE the style which we defined earlier for foreground on the token
+						// the scintilla style KEYS are in the hashmap
+						ScintillaEditor.Editor.SetStyling(endIndex - startIndex, colorToScintillaStyle[themeRule.foreground]);
+						/*Debug.WriteLine(
+							"      - Matched theme rule: " +
+							"[bg: {0}, fg:{1}, fontStyle: {2}]",
+							theme.GetColor(themeRule.background),
+							theme.GetColor(themeRule.foreground),
+							themeRule.fontStyle);*/
 					}
-
-					// start styling from token position by using line position and index of token
-					ScintillaEditor.Editor.StartStyling(linePos + startIndex, 0);
-					// USE the style which we defined earlier for foreground on the token
-					// the scintilla style KEYS are in the hashmap
-					ScintillaEditor.Editor.SetStyling(endIndex - startIndex, colorToScintillaStyle[themeRule.foreground]);
-					/*Debug.WriteLine(
-						"      - Matched theme rule: " +
-						"[bg: {0}, fg:{1}, fontStyle: {2}]",
-						theme.GetColor(themeRule.background),
-						theme.GetColor(themeRule.foreground),
-						themeRule.fontStyle);*/
 				}
 			}
 		}
+
+
+		/*
+		 * Find { instances, use a stack to track these
+		 * If } is encountered then pop from stack and create a folding range from the line of { to the line for }
+		 */
+		private Stack<long> foldStarts = new(); // keeps track of line positions where { was encountered
+		private int level = 3;
+		private void foldLine(string line, long linePosition)
+		{
+			if(line.Contains('{'))
+			{
+				foldStarts.Push(linePosition);
+				level++;
+			}
+			else if(line.Contains('}'))
+			{
+				long startPosition = foldStarts.Pop();
+				ScintillaEditor.Editor.SetMarginWidthN(2, 16);
+				ScintillaEditor.Editor.SetFoldLevel(startPosition, FoldLevel.HeaderFlag);
+				for (long i = startPosition + 1; i <= linePosition; i++)
+				{
+					ScintillaEditor.Editor.SetFoldLevel(i, (FoldLevel)level);
+				}
+
+				level--;
+			}
+		}
+
 
 		public void clear() => ScintillaEditor.Editor.ClearAll();
 

@@ -138,10 +138,13 @@ namespace MicaStudio
 
 		private async void ExplorerTreeView_SelectionChanged(TreeView sender, TreeViewSelectionChangedEventArgs args)
 		{
-			var node = args.AddedItems[0] as TreeNode;
-			if (!node.isFolder)
+			if(args.AddedItems.Count > 0)
 			{
-				Editor.OpenFile(await StorageFile.GetFileFromPathAsync(node.Path));
+				var node = args.AddedItems[0] as TreeNode;
+				if (!node.isFolder)
+				{
+					Editor.OpenFile(await StorageFile.GetFileFromPathAsync(node.Path));
+				}
 			}
 		}
 	}
