@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<winuiex:WindowEx
+    x:Class="MicaStudio.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MicaStudio"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:editor="using:WinUIEditor"
+    xmlns:winuiex="using:WinUIEx" xmlns:controls="using:MicaStudio.Controls" 
+    xmlns:icons="using:FluentIcons.WinUI"
+    mc:Ignorable="d"
+    Title="MicaStudio">
+    <winuiex:WindowEx.SystemBackdrop>
+        <MicaBackdrop/>
+    </winuiex:WindowEx.SystemBackdrop>
+    <Grid>
+        <Grid.RowDefinitions>
+            <!--Titlebar-->
+            <RowDefinition Height="40"/>
+            <!--App-->
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Border x:Name="AppTitleBar"
+                IsHitTestVisible="True"
+                VerticalAlignment="Top"
+                Background="Transparent"
+                Height="40"
+                Grid.Row="0"
+                Canvas.ZIndex="1" 
+                Padding="12, 4, 0, 0">
+                <Grid>
+                    <StackPanel Orientation="Horizontal">
+                        <Image x:Name="AppFontIcon"
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Center"
+                    Source="Assets/Square44x44Logo.scale-100.png"   
+                    Width="24" 
+                    Height="24"/>
+                        <TextBlock x:Name="AppTitle"
+                    Text="Mica Studio"
+                    VerticalAlignment="Center"
+                    Margin="8, 0, 0, 0"
+                    Style="{StaticResource CaptionTextBlockStyle}" />
+                        <TextBlock
+                    Text=" - Preview"
+                    VerticalAlignment="Center"
+                    Margin="2, 0, 0, 0"
+                    Style="{StaticResource CaptionTextBlockStyle}"
+                    Opacity="0.7"/>
+                    </StackPanel>
+                    <AutoSuggestBox QueryIcon="Find" PlaceholderText="Search" HorizontalAlignment="Center" Width="300" Height="32"/>
+                </Grid>
+            </Border>
+        </Grid>
+        <Grid Grid.Row="1" RowSpacing="8" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <!--Top menu bar + tabs-->
+                <RowDefinition Height="36"/>
+                <!--Main content-->
+                <RowDefinition Height="*"/>
+                <!--Status bar-->
+                <RowDefinition Height="32"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <!--Navigation bar-->
+                <ColumnDefinition Width="60"/>
+                <!--Side panel-->
+                <ColumnDefinition Width="250"/>
+                <!--Code editor + Tabs-->
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0" Grid.ColumnSpan="2" Padding="4, 0, 0, 0">
+                <MenuBar>
+                    <MenuBarItem Title="File">
+                        <MenuFlyoutItem Text="Open Folder" Click="OpenFolder_Click"/>
+                        <MenuFlyoutItem Text="Open File" Click="OpenFile_Click"/>
+                        <MenuFlyoutItem Text="Save"/>
+                        <MenuFlyoutSeparator />
+                        <MenuFlyoutItem Text="Exit"/>
+                    </MenuBarItem>
+
+                    <MenuBarItem Title="Edit">
+                        <MenuFlyoutItem Text="Undo"/>
+                        <MenuFlyoutItem Text="Cut"/>
+                        <MenuFlyoutItem Text="Copy"/>
+                        <MenuFlyoutItem Text="Paste"/>
+                    </MenuBarItem>
+
+                    <MenuBarItem Title="View">
+                        <MenuFlyoutItem Text="Output"/>
+                        <MenuFlyoutSeparator/>
+                        <RadioMenuFlyoutItem Text="Landscape" GroupName="OrientationGroup"/>
+                        <RadioMenuFlyoutItem Text="Portrait" GroupName="OrientationGroup" IsChecked="True"/>
+                        <MenuFlyoutSeparator/>
+                        <RadioMenuFlyoutItem Text="Small icons" GroupName="SizeGroup"/>
+                        <RadioMenuFlyoutItem Text="Medium icons" IsChecked="True" GroupName="SizeGroup"/>
+                        <RadioMenuFlyoutItem Text="Large icons" GroupName="SizeGroup"/>
+                    </MenuBarItem>
+
+                    <MenuBarItem Title="Help">
+                        <MenuFlyoutItem Text="About"/>
+                    </MenuBarItem>
+                </MenuBar>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="0">
+               <NavigationView
+                        IsBackButtonVisible="Collapsed"
+                        IsBackEnabled="False"
+                        IsPaneOpen="True"
+                        IsPaneToggleButtonVisible="False"
+                        IsSettingsVisible="False"
+                        IsTitleBarAutoPaddingEnabled="False"
+                        OpenPaneLength="60"
+                        PaneDisplayMode="Left"
+                        Style="{ThemeResource StoreNavigationViewStyle}">
+                        <NavigationView.MenuItems>
+                            <NavigationViewItem Tag="Explorer">
+                                <NavigationViewItem.Icon>
+                                    <icons:FluentIcon Icon="Folder"/>
+                                </NavigationViewItem.Icon>
+                            </NavigationViewItem>
+                        <NavigationViewItem Tag="Search">
+                            <NavigationViewItem.Icon>
+                                <icons:FluentIcon Icon="Search"/>
+                            </NavigationViewItem.Icon>
+                        </NavigationViewItem>
+                        <NavigationViewItem Tag="Debug">
+                            <NavigationViewItem.Icon>
+                                <icons:FluentIcon Icon="Code"/>
+                            </NavigationViewItem.Icon>
+                        </NavigationViewItem>
+                    </NavigationView.MenuItems>
+                    </NavigationView>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="1" CornerRadius="8" Background="{ThemeResource LayerFillColorDefaultBrush}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Height="30" Padding="12, 4, 8, 4">
+                    <TextBlock Text="Explorer" FontWeight="SemiBold" Opacity="0.8" VerticalAlignment="Center"/>
+                </Grid>
+                <MenuFlyoutSeparator Grid.Row="1"/>
+                <TreeView x:Name="ExplorerTreeView" Grid.Row="2" ItemsSource="{x:Bind files, Mode=OneWay}" SelectionChanged="ExplorerTreeView_SelectionChanged" Expanding="ExplorerTreeView_Expanding">
+                    <TreeView.ItemTemplate>
+                        <DataTemplate x:DataType="local:TreeNode">
+                            <TreeViewItem Content="{x:Bind Name, Mode=OneWay}" HasUnrealizedChildren="{x:Bind isFolder, Mode=OneWay}" ItemsSource="{x:Bind Children, Mode=OneWay}"/>
+                        </DataTemplate>
+                    </TreeView.ItemTemplate>
+                </TreeView>
+            </Grid>
+            <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Margin="8, 6, 8, 0">
+                <Grid.RowDefinitions>
+                    <!--Tabs-->
+                    <RowDefinition Height="auto"/>
+                    <!--Editor-->
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TabView Grid.Row="0" IsAddTabButtonVisible="False" TabWidthMode="SizeToContent">
+                    <TabView.Resources>
+                        <ResourceDictionary>
+                            <SolidColorBrush x:Key="TabViewItemHeaderBackgroundSelected" Color="{ThemeResource LayerFillColorDefault}"/>
+                        </ResourceDictionary>
+                    </TabView.Resources>
+                    <TabView.TabItems>
+                        <TabViewItem Header="ME AND THE TABLE">
+                        </TabViewItem>
+                        <TabViewItem Header="test.py">
+                        </TabViewItem>
+                    </TabView.TabItems>
+                </TabView>
+            <Grid Grid.Row="1" RowSpacing="4" CornerRadius="8" Background="{ThemeResource LayerFillColorDefaultBrush}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition Height="4"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+
+                </Grid>
+                <MenuFlyoutSeparator Grid.Row="1"/>
+                <controls:CodeEditor x:Name="Editor" Grid.Row="2"/>
+            </Grid>
+        </Grid>
+            <Grid Grid.Row="2" Grid.ColumnSpan="3" Background="{ThemeResource LayerFillColorDefaultBrush}"></Grid>
+        </Grid>
+    </Grid>
+</winuiex:WindowEx>

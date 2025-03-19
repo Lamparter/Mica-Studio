@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "MicaStudio (Package)": {
+      "commandName": "MsixPackage",
+      "nativeDebugging": true
+    },
+    "MicaStudio (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
