@@ -14,6 +14,10 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Controls\CodeEditor.xaml" />
+    <None Remove="Controls\StatusBar.xaml" />
+    <None Remove="Panels\ExplorerPanel.xaml" />
+    <None Remove="Styles\TabView.xaml" />
+    <None Remove="Tabs\EditorTabView.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,6 +43,7 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="FluentIcons.WinUI" Version="1.1.292" />
     <PackageReference Include="Microsoft.Windows.CsWinRT" Version="2.2.0" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
@@ -53,7 +58,27 @@
     <ProjectReference Include="..\MicaStudio.Core\MicaStudio.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Controls\StatusBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="Controls\CodeEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Panels\ExplorerPanel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Tabs\EditorTabView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Styles\TabView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

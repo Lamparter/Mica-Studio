@@ -3,11 +3,16 @@
     x:Class="MicaStudio.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:MicaStudio">
+    xmlns:local="using:MicaStudio"
+    RequestedTheme="Dark">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+                
+                <!-- Custom TabView-->
+                <ResourceDictionary Source="ms-appx:///Styles/TabView.xaml" />
+                
                 <ResourceDictionary Source="ms-appx:///CubeKit.UI/Styles/NavigationView.xaml" />
                 <ResourceDictionary Source="ms-appx:///CubeKit.UI/Styles/CubeUI.xaml" />
                 <ResourceDictionary Source="ms-appx:///CubeKit.UI/Styles/GlowGradientUI.xaml" />

@@ -9,7 +9,16 @@
     xmlns:editor="using:WinUIEditor"
     mc:Ignorable="d">
 
-    <Grid>
-        <editor:CodeEditorControl x:Name="ScintillaEditor" HighlightingLanguage="csharp"/>
+    <Grid RowSpacing="4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="24"/>
+            <RowDefinition Height="4"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+
+        </Grid>
+        <MenuFlyoutSeparator Grid.Row="1"/>
+        <editor:CodeEditorControl x:Name="ScintillaEditor" Grid.Row="2"/>
     </Grid>
 </UserControl>

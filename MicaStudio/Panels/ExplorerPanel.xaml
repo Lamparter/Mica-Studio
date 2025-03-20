@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="MicaStudio.Panels.ExplorerPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MicaStudio.Panels"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:explorer="using:MicaStudio.Core.Interfaces.Explorer" 
+    xmlns:selectors="using:MicaStudio.Selectors" 
+    xmlns:winui="using:FluentIcons.WinUI"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <!--  The resource dictionary contains the item templates and selector resource for the TreeView  -->
+        <!-- Keeping the templates here fixes x:Bind bug -->
+        <DataTemplate x:Key="FileTemplate" x:DataType="explorer:IExplorerNode">
+            <StackPanel Orientation="Horizontal" Spacing="4">
+                <winui:FluentIcon Icon="Document"/>
+                <TextBlock Text="{x:Bind DisplayName, Mode=OneWay}"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="FolderTemplate" x:DataType="explorer:IExplorerParentNode">
+            <TreeViewItem IsExpanded="{x:Bind IsExpanded, Mode=TwoWay}" ItemsSource="{x:Bind Children, Mode=OneWay}" HasUnrealizedChildren="True">
+                <StackPanel Orientation="Horizontal" Spacing="4">
+                    <winui:FluentIcon Icon="Folder"/>
+                    <TextBlock Text="{x:Bind DisplayName, Mode=OneWay}"/>
+                </StackPanel>
+            </TreeViewItem>
+        </DataTemplate>
+
+        <selectors:ExplorerItemSelector
+            x:Key="ExplorerItemSelector"
+            ExplorerNodeTemplate="{StaticResource FileTemplate}"
+            ExplorerParentNodeTemplate="{StaticResource FolderTemplate}"/>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Height="30" Padding="12, 4, 8, 4">
+            <TextBlock Text="Explorer" FontWeight="SemiBold" Opacity="0.8" VerticalAlignment="Center"/>
+        </Grid>
+        <MenuFlyoutSeparator Grid.Row="1"/>
+        <TreeView x:Name="ExplorerTreeView" Grid.Row="2" 
+                  ItemsSource="{x:Bind files, Mode=OneWay}" 
+                  ItemTemplateSelector="{StaticResource ExplorerItemSelector}"
+                  SelectionChanged="ExplorerTreeView_SelectionChanged" 
+                  Expanding="ExplorerTreeView_Expanding"/>
+    </Grid>
+</UserControl>
