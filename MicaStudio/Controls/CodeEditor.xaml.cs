@@ -33,6 +33,7 @@ using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.System;
 using Windows.UI;
+using MicaStudio.Utilities;
 using WinUIEditor;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Net.WebRequestMethods;
@@ -184,7 +185,7 @@ namespace MicaStudio.Controls
 							// Register foreground colour to a scintilla style if it does not exist
 							if (!colorToScintillaStyle.ContainsKey(themeRule.foreground))
 							{
-								var color = HexToColor(theme.GetColor(themeRule.foreground));
+								var color = ColourUtilities.HexToByte(theme.GetColor(themeRule.foreground));
 								keyCount++;
 								// IMPORTANT: Define a style with a unique KEY mapped to a colour, we will use it to highlight tokens
 								ScintillaEditor.Editor.StyleSetFore(keyCount, color);
@@ -210,7 +211,6 @@ namespace MicaStudio.Controls
 				}
 			}
 		}
-
 		int HexToColor(string hexString)
 		{
 			// Remove # if it exists
@@ -226,7 +226,6 @@ namespace MicaStudio.Controls
 
 			return color;
 		}
-
 
 		/*
 		 * Find { instances, use a stack to track these
