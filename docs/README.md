@@ -1,4 +1,4 @@
-![Screenshot-BackgroundCrop,NoMargin,RoundedCorner](https://github.com/FireCubeStudios/DarkSky/blob/master/DarkSky.png?raw=true)
+![Screenshot-BackgroundCrop,NoMargin,RoundedCorner](https://github.com/FireCubeStudios/Mica-Studio/blob/master/docs/MicaStudio.png?raw=true)
 
 <p align="center">
   <!--<a style="text-decoration:none" href="https://github.com/FireCubeStudios/DarkSky/actions/workflows/ci.yml">
@@ -22,7 +22,7 @@
 
 ---
 
-Introducing **Mica Studio**, a modern code editor for Windows. Built using the Windows App SDK and enhanced using GlowUI, it leverages fast technologies paired with beautiful design that makes programming both easy and visually appealing with an exciting UI inspired by Visual Studio Code. 
+Introducing **Mica Studio**, a modern code editor for Windows. Built using the Windows App SDK and enhanced using GlowUI, it leverages fast technologies paired with beautiful design that makes programming both easy and visually appealing with an exciting UI inspired by Visual Studio Code.
 
 ## 📋 Features
 
