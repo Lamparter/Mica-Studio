@@ -1,28 +1,30 @@
-![Screenshot-BackgroundCrop,NoMargin,RoundedCorner](https://github.com/FireCubeStudios/Mica-Studio/blob/master/docs/MicaStudio.png?raw=true)
+<p align="center">
+  <img src="https://github.com/FireCubeStudios/Mica-Studio/blob/main/eng/PackageLogo.png?raw=true" height="128">
+  <h1 align="center">Mica Studio</h1>
+</p>
 
 <p align="center">
-  <!--<a style="text-decoration:none" href="https://github.com/FireCubeStudios/DarkSky/actions/workflows/ci.yml">
-    <img src="https://github.com/FireCubeStudios/DarkSky/actions/workflows/ci.yml/badge.svg" alt="CI Status" /></a>
+  <!--<a style="text-decoration:none" href="https://github.com/FireCubeStudios/Mica-Studio/actions/workflows/ci.yml">
+    <img src="https://github.com/FireCubeStudios/Mica-Studio/actions/workflows/ci.yml/badge.svg" alt="CI Status" /></a>-->
   <a style="text-decoration:none" href="https://bsky.app/profile/firecube.bsky.social">
-    <img src="https://img.shields.io/badge/Bluesky-Follow-blue" alt="Follow on Bluesky for updates" /></a>-->
+    <img src="https://img.shields.io/badge/Bluesky-Follow-blue" alt="Follow on Bluesky for updates" /></a>
   <a style="text-decoration:none" href="https://dsc.gg/devsanx">
     <img src="https://img.shields.io/discord/714581497222398064?label=Discord&color=7289da" alt="Join discord server to learn more" /></a>
 </p>
 
-<!--<p align="center">-->
-  <!-- Store Badge -->
-  <!--<a style="text-decoration:none" href="https://apps.microsoft.com/detail/9np22dtfscts?launch=true&mode=full">
-    <picture>
-      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/files-community/Files/a80d7bfa23418689ec2c50249f7e68c89a64b8a4/.github/assets/StoreBadge-dark.png" width="220" />
-      <img src="https://raw.githubusercontent.com/files-community/Files/a80d7bfa23418689ec2c50249f7e68c89a64b8a4/.github/assets/StoreBadge-light.png" width="220" />
-  </picture></a>
-</p>-->
-
-<!--<h4 align="center">A modern Bluesky client for Windows.</h3>-->
-
----
-
 Introducing **Mica Studio**, a modern code editor for Windows. Built using the Windows App SDK and enhanced using GlowUI, it leverages fast technologies paired with beautiful design that makes programming both easy and visually appealing with an exciting UI inspired by Visual Studio Code.
+
+<img width="1012" alt="github-banner" src="https://user-images.githubusercontent.com/806104/194004176-3143d19f-1ad9-449c-bd41-8c4f9998f44b.png">
+
+> [!NOTE]
+> This app is being built very rapidly; while contributions are welcome please be aware that you may face merge conflicts.
+
+## Community
+
+Join our growing community on [Discord](https://dsc.gg/devsanx) and [GitHub Discussions](https://github.com/FireCubeStudios/Mica-Studio/discussions) where we discuss and collaborate on all things Mica Studio. Don't be shy, jump right in and be part of the discussion!
+
+> [!NOTE]
+> There is also a blog, feel free to visit it [in the GitHub wiki](https://github.com/FireCubeStudios/Mica-Studio/wiki).
 
 ## 📋 Features
 
@@ -53,24 +55,47 @@ To build Mica Studio for development, open the `Mica-Studio.sln` item in Visual 
 
 ## 🙋 Contributing
 
-Want to contribute to this project? Let me know with an [issue](https://github.com/FireCubeStudios/Mica-Studio/issues) that communicates your intent to create a [pull request](https://github.com/FireCubeStudios/DarkSky/pulls).
+Want to contribute to this project? Let me know with an [issue](https://github.com/FireCubeStudios/Mica-Studio/issues) that communicates your intent to create a [pull request](https://github.com/FireCubeStudios/Mica-Studio/pulls).
 
 <!--Looking for a place to start? Check out the [task board](https://github.com/users/FireCubeStudios/projects/2), where you can sort tasks by size and priority.-->
 
-<!--## ⚖️ License
+## ⚖️ License
 
-This project is licensed under the `MIT` license. See the `LICENSE.md` file for in the root directory for details.
+This project is licensed under the `MIT` license. See the `LICENSE` file for in the root directory for details.
 
-## 😇 Acknowledgements
+## Related Repositories
 
-DarkSky uses the following libraries:
-- [FishyFlip](https://github.com/drasticactions/FishyFlip)
-- ~~[DarkSky.API](https://github.com/FireCubeStudios/DarkSky.API)~~
-
-We thank all contributors and users for their continued support.
--->
-<!--
----
-
-![Screenshot-NoBackgroundCrop,Margin,NoRoundedCorner](https://github.com/user-attachments/assets/8c0f2651-b15a-49de-841c-6691f328bea1)
--->
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/CodeEditApp/CodeEditKit">
+        <img src="https://github.com/CodeEditApp/CodeEditKit/blob/main/.github/CodeEditKit-Icon-128@2x.png?raw=true" height="128">
+      </a>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/CodeEditApp/CodeEditKit">CodeEditKit</a>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </td>
+    <td align="center">
+      <a href="https://github.com/CodeEditApp/CodeEditTextView">
+        <img src="https://github.com/CodeEditApp/CodeEditTextView/blob/main/.github/CodeEditTextView-Icon-128@2x.png?raw=true" height="128">
+      </a>
+      <p><a href="https://github.com/CodeEditApp/CodeEditTextView">CodeEditTextView</a></p>
+    </td>
+    <td align="center">
+      <a href="https://github.com/CodeEditApp/CodeEditSourceEditor">
+        <img src="https://github.com/CodeEditApp/CodeEditTextView/blob/main/.github/CodeEditSourceEditor-Icon-128@2x.png?raw=true" height="128">
+      </a>
+      <p><a href="https://github.com/CodeEditApp/CodeEditSourceEditor">CodeEditSourceEditor</a></p>
+    </td>
+    <td align="center">
+      <a href="https://github.com/CodeEditApp/CodeEditLanguages">
+        <img src="https://github.com/CodeEditApp/CodeEditLanguages/blob/main/.github/CodeEditLanguages-Icon-128@2x.png?raw=true" height="128">
+      </a>
+      <p><a href="https://github.com/CodeEditApp/CodeEditLanguages">CodeEditLanguages</a></p>
+    </td>
+    <td align="center">
+      <a href="https://github.com/CodeEditApp/CodeEditCLI">
+        <img src="https://github.com/CodeEditApp/CodeEditCLI/blob/main/.github/CodeEditCLI-Icon-128@2x.png?raw=true" height="128">
+      </a>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/CodeEditApp/CodeEditCLI">CodeEditCLI</a>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+    </td>
+  </tr>
+</table>
