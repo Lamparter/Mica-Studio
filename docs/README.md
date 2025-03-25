@@ -49,7 +49,7 @@ Join our growing community on [Discord](https://dsc.gg/devsanx) and [GitHub Disc
 
 #### 2. Clone the repository
 
-```ps
+```shell
 git clone https://github.com/FireCubeStudios/Mica-Studio
 ```
 
@@ -69,6 +69,7 @@ Want to contribute to this project? Let me know with an [issue](https://github.c
 
 This project is licensed under the `MIT` license. See the `LICENSE` file for in the root directory for details.
 
+<!-- This will happen later
 ## Related Repositories
 
 <table>
@@ -105,3 +106,4 @@ This project is licensed under the `MIT` license. See the `LICENSE` file for in 
     </td>
   </tr>
 </table>
+-->
