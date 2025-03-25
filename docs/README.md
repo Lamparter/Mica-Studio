@@ -16,8 +16,14 @@ Introducing **Mica Studio**, a modern code editor for Windows. Built using the W
 
 <img width="1012" alt="github-banner" src="https://user-images.githubusercontent.com/806104/194004176-3143d19f-1ad9-449c-bd41-8c4f9998f44b.png">
 
-> [!NOTE]
-> This app is being built very rapidly; while contributions are welcome please be aware that you may face merge conflicts.
+> [!IMPORTANT]
+> Mica Studio is currently in development and not yet recommended for production use, however you can take part in shaping it's future by test-driving [pre-release versions](https://github.com/FireCubeStudios/Mica-Studio/releases) and [submitting an issue](https://github.com/FireCubeStudios/Mica-Studio/issues) to let us know what you think.
+
+## Mission
+
+Most modern IDE experiences rely on technologies such as Electron and web technologies (haram) however this project aims to use very halal technologies (.NET) to build a modern development experience that looks like any app you would expect to find on Windows (and other platforms)!
+
+<img width="1012" alt="TextEdit plus Xcode equals CodeEdit" src="https://github.com/CodeEditApp/CodeEdit/assets/806104/a9379df0-ab26-4ef8-98a9-2e2b4bd8c7b4">
 
 ## Community
 
@@ -38,7 +44,7 @@ Join our growing community on [Discord](https://dsc.gg/devsanx) and [GitHub Disc
 #### 1. Prerequisites
 
 - [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) with the following individual components:
-    - Windows SDK
+  - Windows SDK
 - Git for Windows
 
 #### 2. Clone the repository
