@@ -26,14 +26,14 @@ Join our growing community on [Discord](https://dsc.gg/devsanx) and [GitHub Disc
 > [!NOTE]
 > There is also a blog, feel free to visit it [in the GitHub wiki](https://github.com/FireCubeStudios/Mica-Studio/wiki).
 
-## 📋 Features
+## Features
 
 - **Design**: Beautiful, modern design inline with the Fluent Design language.
 - **Speed**: Fast app built with WinAppSDK technologies to elevate its speed.
 - **GlowUI**: Stunning design built with GlowUI theming.
 - **Familiar UI**: UI inspired by apps you know and love including Visual Studio Code.
 
-## 🛠️ Building from source
+## Building from source
 
 #### 1. Prerequisites
 
@@ -53,13 +53,13 @@ This will create a local copy of the repository.
 
 To build Mica Studio for development, open the `Mica-Studio.sln` item in Visual Studio. Right-click on the `MicaStudio` project in solution explorer and select ‘Set as Startup item’.
 
-## 🙋 Contributing
+## Contributing
 
 Want to contribute to this project? Let me know with an [issue](https://github.com/FireCubeStudios/Mica-Studio/issues) that communicates your intent to create a [pull request](https://github.com/FireCubeStudios/Mica-Studio/pulls).
 
 <!--Looking for a place to start? Check out the [task board](https://github.com/users/FireCubeStudios/projects/2), where you can sort tasks by size and priority.-->
 
-## ⚖️ License
+## License
 
 This project is licensed under the `MIT` license. See the `LICENSE` file for in the root directory for details.
 
