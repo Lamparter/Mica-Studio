@@ -35,9 +35,11 @@ Join our growing community on [Discord](https://dsc.gg/devsanx) and [GitHub Disc
 ## Features
 
 - **Design**: Beautiful, modern design inline with the Fluent Design language.
-- **Speed**: Fast app built with WinAppSDK technologies to elevate its speed.
+- **Speed**: This is a traditional native app rather than being built with web-based technologies and so has the highest performance.
 - **GlowUI**: Stunning design built with GlowUI theming.
 - **Familiar UI**: UI inspired by apps you know and love including Visual Studio Code.
+- **Textmate**: Built using some of the same technologies as VS Code, meaning the app supports VS Code themes and languages.
+- **Extensions**: Comes with a built-in extensions system so you can develop your own plugins.
 
 ## Building from source
 
